@@ -17,11 +17,11 @@ const SellerLogin = async (req, res) => {
             .json({ error: "Incorrect Email Id or Password" });
         }
         //signing a token after user is verified and password confirmation returns true
-        jwt.sign({ Seller }, process.env.JWT_SECRET, (err, token) => {
+        jwt.sign({ id:Seller._id }, process.env.JWT_SECRET, (err, token) => {
           if (err) {
             return res.status(500).send("Token generation error");
           }
-          // res.cookie("iNotes_jwt", token, { httpOnly: true });
+          res.cookie("biomall_seller", token, { httpOnly: true });
           res.status(200).json({ token, Seller });
         });
       });

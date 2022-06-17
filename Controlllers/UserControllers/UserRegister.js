@@ -11,12 +11,12 @@ const UserRegister = (req, res) => {
     } else {
       UserSchema.create({ ...req.body.user, password: hash })
         .then((user) => {
-          OTPSchema.findOneAndDelete({_id: req.body.otpObj.otpId},(err,doc)=>{
+          OTPSchema.findByIdAndDelete({_id: req.body.otpObj.otpId},(err,doc)=>{
             if(err){
               return res.status(500).send()
             }
-            return res.status(200).send({message:"Registered Successfully"});
           })
+          return res.status(200).send({message:"Registered Successfully"});
         })
         .catch((error) => res.status(400).send({ error: error.keyValue }));
     }
