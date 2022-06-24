@@ -7,14 +7,14 @@ const AddProduct = async (req, res) => {
   }
 
   const images = await req.files?.map((file) => {
-    console.log((file.path).toString('base64'))
     const imgPath = fs.readFileSync(file.path);
-    const encode_Img = imgPath.toString('base64')
 
     const image = {
-      contentType: file.mimetype,
-      data: Buffer.from(encode_Img).toString('base64')
+      binaryImg: imgPath,
+      type: file.mimetype,
+      path: file.path,
     };
+
     return image;
   });
 
@@ -26,10 +26,10 @@ const AddProduct = async (req, res) => {
 
   newProduct
     .save()
-    .then((product) => res.send(product))
+    .then((product) => res.send({message:"Product Added Successfully"}))
     .catch((err) => {
-        console.log(err)
-        return res.status(500).send({ error: "Failed to Add Product" })});
+      return res.status(500).send(err);
+    });
 };
 
 module.exports = AddProduct;

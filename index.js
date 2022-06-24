@@ -18,6 +18,7 @@ app.use('/api/auth/user', require('./Routes/UserRoutes'))
 app.use('/api/auth/seller', require('./Routes/SellerRoutes'))
 app.use('/api/auth', require('./Routes/AuthRoutes'))
 app.use('/api/products',require('./Routes/ProductRoutes'))
+app.use('/Public/Uploads/Images',express.static('Public/Uploads/Images'))
 
 const port = process.env.PORT || 4000
 app.listen(port,()=>{

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const ImageSchema = require("./ImageSchema");
 
 const ProductSchema = new mongoose.Schema(
   {
@@ -11,46 +12,47 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      data: Buffer,
+      lowercase:true
     },
     price: {
       type: Number,
       required: true,
     },
-    productImages: [
-      {
-          data:  Buffer,
-          contentType: {
-            type: String,
-            required: true,
-          },
-      },
-    ],
+    productImages: {
+      type: [ImageSchema.schema],
+      required: true,
+    },
     description: {
       type: String,
       required: true,
+      lowercase:true
     },
     category: {
       type: String,
       required: true,
+      lowercase:true
     },
     brand: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
+      lowercase:true
     },
     CAS: String,
     catalogNo: {
       type: String,
       required: true,
       unique: true,
+      uppercase:true
     },
     packSize: {
       type: String,
       required: true,
+      lowercase:true
     },
     unit: {
       type: String,
       required: true,
+      lowercase:true
     },
     discount: {
       type: Number,
@@ -63,7 +65,7 @@ const ProductSchema = new mongoose.Schema(
     expiryDate: Date,
     status: {
       type: String,
-      default: "Active",
+      default: "InActive",
     },
   },
   {
