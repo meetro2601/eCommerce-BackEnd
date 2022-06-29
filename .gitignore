@@ -1,5 +1,7 @@
 /node_modules
 
+/Public/Uploads
+
 # misc
 .DS_Store
 .env

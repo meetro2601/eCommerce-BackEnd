@@ -28,6 +28,9 @@ const AddProduct = async (req, res) => {
     .save()
     .then((product) => res.send({message:"Product Added Successfully"}))
     .catch((err) => {
+       images.map(image => {
+        fs.unlinkSync(image.path)
+      })
       return res.status(500).send(err);
     });
 };

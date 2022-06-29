@@ -26,8 +26,8 @@ router.post('/deactivate-product/:productId',VerifyToken,DeactivateProduct)
 
 router.post('/activate-product/:productId',VerifyToken,ActivateProduct)
 
-router.get('/:productname',GetSingleProduct)
+router.delete("/delete/:productId",VerifyToken,DeleteProduct)
 
-router.delete("/delete/:productId",DeleteProduct)
+router.get('/:productname',GetSingleProduct)
 
 module.exports = router
