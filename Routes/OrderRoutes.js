@@ -9,6 +9,6 @@ router.post('/create',VerifyToken,createOrder)
 
 router.get('/get',VerifyToken,getOrders)
 
-router.post('/update/:orderId',updateOrder)
+router.put('/update/:orderId',updateOrder)
 
 module.exports = router

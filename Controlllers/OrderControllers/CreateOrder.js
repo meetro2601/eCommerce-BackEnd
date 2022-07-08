@@ -6,7 +6,7 @@ const createOrder = (req, res) => {
       .then((doc) => {
         res.send(doc);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(500).send(err));
   }
 };
 
