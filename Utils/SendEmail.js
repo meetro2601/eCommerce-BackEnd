@@ -1,20 +1,26 @@
 require("dotenv").config();
-const nodemailer = require("nodemailer");
+const sgMail = require("@sendgrid/mail");
 
-const sendEmail = async (mailOptions) => {
+const sendEmail = async (email, otp) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.AUTH_USER,
-        pass: process.env.AUTH_PASSWORD,
-      },
-    });
+    sgMail.setApiKey(process.env.SENDGRID_EMAIL_KEY);
 
-    await transporter.sendMail(mailOptions);
-    return true
+    const otpMailMsg = {
+      from: process.env.AUTH_EMAIL,
+      to: `${email}`,
+      subject: "OTP for registration on Biomall",
+      html: `<p>Welcome</b></p>
+      <p>Here is your One Time Password (OTP) for Email verification</p>
+      <p style="color:red;font-size:24px">${otp}</p>
+      <p>Note: Above OTP is only valid for 10 minutes.</p>
+      `,
+    };
+
+    await sgMail.send(otpMailMsg);
+    return true;
   } catch (error) {
-    return false
+    console.log(error);
+    return false;
   }
 };
 

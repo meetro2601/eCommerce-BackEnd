@@ -16,18 +16,7 @@ const SendOtp = async (req, res) => {
       mobileOTP: mobileOTPHashed,
     });
 
-    const otpMailOptions = {
-      from: "meetbr26@gmail.com",
-      to: `${req.body.email}`,
-      subject: "OTP for registration on Biomall",
-      html: `<p>Welcome</b></p>
-      <p>Here is your One Time Password (OTP) for Email verification</p>
-      <p style="color:red;font-size:24px">${emailOTP}</p>
-      <p>Note: Above OTP is only valid for 10 minutes.</p>
-      `,
-    };
-
-    const emailSent = await sendEmail(otpMailOptions);
+    const emailSent = await sendEmail(req.body.email,emailOTP);
     const smsSent = await sendSMS(req.body.mobile, mobileOTP);
 
     if (!emailSent || !smsSent) {
