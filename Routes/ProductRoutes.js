@@ -4,7 +4,6 @@ const AddProduct = require('../Controlllers/ProductControllers/AddProduct')
 const DeactivateProduct = require('../Controlllers/ProductControllers/DeactivateProduct')
 const DeleteProduct = require('../Controlllers/ProductControllers/DeleteProduct')
 const FilterProducts = require('../Controlllers/ProductControllers/FilterProducts')
-const GetAllActiveProducts = require('../Controlllers/ProductControllers/GetAllActiveProducts')
 const GetAllProducts = require('../Controlllers/ProductControllers/GetAllProducts')
 const GetSingleProduct = require('../Controlllers/ProductControllers/GetSingleProduct')
 const UpdateProduct = require('../Controlllers/ProductControllers/UpdateProduct')
@@ -13,8 +12,6 @@ const VerifyToken = require('../Middlewares/VerifyToken')
 const router = express.Router()
 
 router.get('/all',GetAllProducts)
-
-router.get('/active',GetAllActiveProducts)
 
 router.get('/filterby',FilterProducts)
 
